@@ -5,12 +5,13 @@ This module is based on the document: iRobot® Roomba 500 Open Interface (OI) Sp
 - Link https://www.irobot.lv/uploaded_files/File/iRobot_Roomba_500_Open_Interface_Spec.pdf
 
 """
+import os
 import math
 import sys
 from time import sleep
 
+import json
 import serial  # pyserial
-
 
 class PyRoombaAdapter:
     """
@@ -53,10 +54,6 @@ class PyRoombaAdapter:
            "Buttons": 165,
            }
 
-    Packet_ID = {
-        "OI Mode": 35,
-    }
-
     PARAMS = {
         "STRAIGHT_RADIUS": 32768,
         "MIN_RADIUS": -2000,
@@ -73,6 +70,8 @@ class PyRoombaAdapter:
             print("Cannot find serial port. Plase reconnect it.")
             sys.exit(1)
 
+        with open(os.path.join(os.path.dirname(__file__), "sensor_packet.json")) as f:
+            self.sensor_packet = json.load(f)
         self.change_mode_to_safe()  # default mode is safe mode
         sleep(1.0)
 
@@ -83,7 +82,7 @@ class PyRoombaAdapter:
         The Destructor make Roomba move to passive mode and close serial connection
         """
         # disconnect sequence
-        self._send_cmd(self.CMD["Start"])  # move to passive mode
+        self.change_mode_to_passive()  # move to passive mode
         sleep(0.1)
         self.serial_con.close()
 
@@ -99,7 +98,6 @@ class PyRoombaAdapter:
             >>> adapter = PyRoombaAdapter(PORT)
             >>> adapter.start_cleaning()
         """
-        self._send_cmd(self.CMD["Start"])
         self._send_cmd(self.CMD["Clean"])
 
     def start_max_cleaning(self):
@@ -114,7 +112,6 @@ class PyRoombaAdapter:
             >>> adapter = PyRoombaAdapter(PORT)
             >>> adapter.start_max_cleaning()
         """
-        self._send_cmd(self.CMD["Start"])
         self._send_cmd(self.CMD["Max"])
 
     def start_spot_cleaning(self):
@@ -129,7 +126,6 @@ class PyRoombaAdapter:
             >>> adapter = PyRoombaAdapter(PORT)
             >>> adapter.start_spot_cleaning()
         """
-        self._send_cmd(self.CMD["Start"])
         self._send_cmd(self.CMD["Spot"])
 
     def start_seek_dock(self):
@@ -144,7 +140,6 @@ class PyRoombaAdapter:
             >>> adapter = PyRoombaAdapter(PORT)
             >>> adapter.start_seek_dock()
         """
-        self._send_cmd(self.CMD["Start"])
         self._send_cmd(self.CMD["Seek Dock"])
 
     def change_mode_to_passive(self):
@@ -156,10 +151,14 @@ class PyRoombaAdapter:
         - Available in modes: Passive, Safe, or Full
         """
         self._send_cmd(self.CMD["Start"])
+        sleep(0.1)
 
-        # TODO implement
         # check mode
-        # self.request_data([self.Packet_ID["OI Mode"]])
+        if self.request_data(["OI Mode"])[0] == 1:
+            print("change mode to passive")
+        else:
+            print("cannot change mode to passive")
+            sys.exit(1)
 
     def change_mode_to_safe(self):
         """
@@ -171,12 +170,15 @@ class PyRoombaAdapter:
         - Available in modes: Passive, Safe, or Full
         """
         # send command
-        self._send_cmd(self.CMD["Start"])
         self._send_cmd(self.CMD["Safe"])
+        sleep(0.1)
 
-        # TODO implement
         # check mode
-        # self.request_data([self.Packet_ID["OI Mode"]])
+        if self.request_data(["OI Mode"])[0] == 2:
+            print("change mode to safe")
+        else:
+            print("cannot change mode to safe")
+            sys.exit(1)
 
     def change_mode_to_full(self):
         """
@@ -189,12 +191,15 @@ class PyRoombaAdapter:
         - Available in modes: Passive, Safe, or Full
         """
         # send command
-        self._send_cmd(self.CMD["Start"])
-        self._send_cmd(self.CMD["Safe"])
+        self._send_cmd(self.CMD["Full"])
+        sleep(0.1)
 
-        # TODO implement
         # check mode
-        # self.request_data([self.Packet_ID["OI Mode"]])
+        if self.request_data(["OI Mode"])[0] == 3:
+            print("change mode to full")
+        else:
+            print("cannot change mode to full")
+            sys.exit(1)
 
     def turn_off_power(self):
         """
@@ -210,18 +215,17 @@ class PyRoombaAdapter:
             >>> adapter.turn_off_power()
         """
         # send command
-        self._send_cmd(self.CMD["Start"])
         self._send_cmd(self.CMD["Power"])
 
-    def request_data(self, request_id_list):
-
-        if len(request_id_list) == 1:  # single packet
-            self._send_cmd(self.CMD["Start"])
+    def request_data(self, request_data_list):
+        data_list = []
+        for request_data in request_data_list:
             self._send_cmd(self.CMD["Sensors"])
-            self._send_cmd(request_id_list[0])
-            sleep(0.5)
-            print("re:", self.serial_con.read())
-            sleep(0.5)
+            self._send_cmd(self.sensor_packet[request_data_list[0]]["ID"])
+            byte = self.sensor_packet[request_data_list[0]]["bytes"]
+            data = self.serial_con.read(byte)
+            data_list.append(self._get_value_from_bytes(data))
+        return data_list
 
     def move(self, velocity, yaw_rate):
         """
@@ -551,6 +555,10 @@ class PyRoombaAdapter:
         """
         self._send_cmd([self.CMD["Play"], song_number])
 
+    def get_encoder_counts(self):
+        enc_count = self.request_data(['Left Encoder Counts', 'Right Encoder Counts'])
+        return enc_count
+
     @staticmethod
     def _connect_serial(port, bau_rate, time_out):
         serial_con = serial.Serial(port, baudrate=bau_rate, timeout=time_out)
@@ -600,6 +608,11 @@ class PyRoombaAdapter:
         else:
             eqBitVal = (1 << 8) + value
         return eqBitVal & 0xFF
+
+    @staticmethod
+    def _get_value_from_bytes(byte):
+        value = int.from_bytes(byte, "big")
+        return value
 
     def _send_cmd(self, cmd):
         if type(cmd) == list:  # command list

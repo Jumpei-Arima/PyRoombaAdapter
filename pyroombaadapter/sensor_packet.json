@@ -1,0 +1,366 @@
+{
+    "Bumps and Wheel Drops": {
+        "group": [0, 1, 6, 100],
+        "ID": 7,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 15
+    },
+    "Wall": {
+        "group": [0, 1, 6, 100],
+        "ID": 8,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 1
+    },
+    "Cliff Left": {
+        "group": [0, 1, 6, 100],
+        "ID": 9,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 1
+    },
+    "Cliff Front Left": {
+        "group": [0, 1, 6, 100],
+        "ID": 10,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 1
+    },
+    "Cliff Front Right": {
+        "group": [0, 1, 6, 100],
+        "ID": 11,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 1
+    },
+    "Cliff Right": {
+        "group": [0, 1, 6, 100],
+        "ID": 12,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 1
+    },
+    "Virtual Wall": {
+        "group": [0, 1, 6, 100],
+        "ID": 13,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 1
+    },
+    "Overcurrents": {
+        "group": [0, 1, 6, 100],
+        "ID": 14,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 29
+    },
+    "Dirt Detect": {
+        "group": [0, 1, 6, 100],
+        "ID": 15,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 255
+    },
+    "Unused 1": {
+        "group": [0, 1, 6, 100],
+        "ID": 16,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 255
+    },
+    "Ir Opcode": {
+        "group": [0, 2, 6, 100],
+        "ID": 17,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 255
+    },
+    "Buttons": {
+        "group": [0, 2, 6, 100],
+        "ID": 18,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 255
+    },
+    "Distance": {
+        "group": [0, 2, 6, 100],
+        "ID": 19,
+        "bytes": 2,
+        "range_min": -32768,
+        "range_max": 32677
+    },
+    "Angle": {
+        "group": [0, 2, 6, 100],
+        "ID": 20,
+        "bytes": 2,
+        "range_min": -32768,
+        "range_max": 32677
+    },
+    "Charging State": {
+        "group": [0, 3, 6, 100],
+        "ID": 21,
+        "bytes":1,
+        "range_min": 0,
+        "range_max": 5
+    },
+    "Voltage": {
+        "group": [0, 3, 6, 100],
+        "ID": 22,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 65535
+    },
+    "Current": {
+        "group": [0, 3, 6, 100],
+        "ID": 23,
+        "bytes": 2,
+        "range_min": -32768,
+        "range_max": 32677
+    },
+    "Temperture": {
+        "group": [0, 3, 6, 100],
+        "ID": 24,
+        "bytes": 1,
+        "range_min": -128,
+        "range_max": 127
+    },
+    "Battery Charge": {
+        "group": [0, 3, 6, 100],
+        "ID": 25,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 65535
+    },
+    "Battery Capacity": {
+        "group": [0, 3, 6, 100],
+        "ID": 26,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 65535
+    },
+    "Wall Signal": {
+        "group": [4, 6, 100],
+        "ID": 27,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 4095
+    },
+    "Cliff Left Signal": {
+        "group": [4, 6, 100],
+        "ID": 28,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 4095
+    },
+    "Cliff Front Left Signal": {
+        "group": [4, 6, 100],
+        "ID": 29,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 4095
+    },
+    "Cliff Front Right Signal": {
+        "group": [4, 6, 100],
+        "ID": 30,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 4095
+    },
+    "Cliff Right Signal": {
+        "group": [4, 6, 100],
+        "ID": 31,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 4095
+    },
+    "Unused 2": {
+        "group": [4, 6, 100],
+        "ID": 32,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 255
+    },
+    "Unused 3": {
+        "group": [4, 6, 100],
+        "ID": 33,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 65535
+    },
+    "Charger Available": {
+        "group": [4, 6, 100],
+        "ID": 34,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 3
+    },
+    "OI Mode": {
+        "group": [5, 6, 100],
+        "ID": 35,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 3
+    },
+    "Song Number": {
+        "group": [5, 6, 100],
+        "ID": 36,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 4
+    },
+    "Song Playing": {
+        "group": [5, 6, 100],
+        "ID": 37,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 1
+    },
+    "Oi Stream Num Packets": {
+        "group": [5, 6, 100],
+        "ID": 38,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 108
+    },
+    "Velocity": {
+        "group": [5, 6, 100],
+        "ID": 39,
+        "bytes": 2,
+        "range_min": -500,
+        "range_max": 500
+    },
+    "Radius": {
+        "group": [5, 6, 100],
+        "ID": 40,
+        "bytes": 2,
+        "range_min": -32768,
+        "range_max": 326767
+    },
+    "Velocity Right": {
+        "group": [5, 6, 100],
+        "ID": 41,
+        "bytes": 2,
+        "range_min": -500,
+        "range_max": 500
+    },
+    "Velocity Left": {
+        "group": [5, 6, 100],
+        "ID": 42,
+        "bytes": 2,
+        "range_min": -500,
+        "range_max": 500
+    },
+    "Left Encoder Counts": {
+        "group": [100, 101],
+        "ID": 43,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 65535
+    },
+    "Right Encoder Counts": {
+        "group": [100, 101],
+        "ID": 44,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 65535
+    },
+    "Light Bumper": {
+        "group": [100, 101],
+        "ID": 45,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 127
+    },
+    "Light Bump Left": {
+        "group": [100, 101, 106],
+        "ID": 46,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 4095
+    },
+    "Light Bump Front Left": {
+        "group": [100, 101, 106],
+        "ID": 47,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 4095
+    },
+    "Light Bump Center Left": {
+        "group": [100, 101, 106],
+        "ID": 48,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 4095
+    },
+    "Light Bump Center Right": {
+        "group": [100, 101, 106],
+        "ID": 49,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 4095
+    },
+    "Light Bump Front Right": {
+        "group": [100, 101, 106],
+        "ID": 50,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 4095
+    },
+    "Light Bump Right": {
+        "group": [100, 101, 106],
+        "ID": 51,
+        "bytes": 2,
+        "range_min": 0,
+        "range_max": 4095
+    },
+    "Ir Opcode Left": {
+        "group": [100, 101],
+        "ID": 52,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 255
+    },
+    "Ir Opcode Right": {
+        "group": [100, 101],
+        "ID": 53,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 255
+    },
+    "Left Motor Current":{
+        "group": [100, 101, 107],
+        "ID": 54,
+        "bytes": 2,
+        "range_min": -32768,
+        "range_max": 32767
+    },
+    "Right Motor Current": {
+        "group": [100, 101, 107],
+        "ID": 55,
+        "bytes": 2,
+        "range_min": -32768,
+        "range_max": 32767
+    },
+    "Main Brush Current": {
+        "group": [100, 101, 107],
+        "ID": 56,
+        "bytes": 2,
+        "range_min": -32768,
+        "range_max": 32767
+    },
+    "Side Brush Current": {
+        "group": [100, 101, 107],
+        "ID": 57,
+        "bytes": 2,
+        "range_min": -32768,
+        "range_max": 32767
+    },
+    "Stasis":{
+        "group": [100, 101, 107],
+        "ID": 58,
+        "bytes": 1,
+        "range_min": 0,
+        "range_max": 1
+    }
+}
